@@ -1,37 +1,138 @@
 import * as vscode from 'vscode';
-
+import * as fs from "fs";
+import * as path from "path";
 const cats = {
 	'Coding Cat': 'https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif',
 	'Compiling Cat': 'https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif',
 	'Testing Cat': 'https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif'
 };
+function getWebviewContent() {
+	return `<!DOCTYPE html>
+  <html lang="en">
+  <head>
+	  <meta charset="UTF-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <title>Cat Coding</title>
+	
+  </head>
+  <body>
+	  <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" width="300" />
+	  <div class="main" data-vscode-context='{"webviewSection": "main", "mouseCount": 4}'>
+	  <h1>Cat Coding</h1>
+  
+	  <textarea data-vscode-context='{"webviewSection": "editor", "preventDefaultContextMenuItems": true}'></textarea>
+	  </div>
+	  <button data-vscode-context='{"preventDefaultContextMenuItems": true } onClick={(e) => {
+		  e.preventDefault();
+		  e.target.dispatchEvent(new MouseEvent('contextmenu', { bubbles: true, clientX: e.clientX, clientY: e.clientY }));
+		  e.stopPropagation();
+	  }}>Create</button>
+  </body>
+  </html>`;
+}
+const workSource = "./vue-table/index.html";
 
+function fixResourceReferences(html: string, resourceRootDir: string, webview: vscode.Webview) {
+	// const refRegex = /((href)|(src))="(\.\/[^"]+)"/g;
+	const refRegex = /((href)|(src))="([^"]+)"/g;
+	let refMatch;
+	while ((refMatch = refRegex.exec(html)) !== null) {
+		const offset = refMatch.index;
+		const length = refMatch[0].length;
+		const refAttr = refMatch[1];
+		const refName = refMatch[4];
+		const refPath = path.join(resourceRootDir, refName);
+		const refUri = webview.asWebviewUri(vscode.Uri.file(refPath));
+		const refReplace = refAttr + "=\"" + refUri + "\"";
+		html = html.slice(0, offset) + refReplace + html.slice(offset + length);
+	}
+	return html;
+}
+function fixCspSourceReferences(html: string, webview: vscode.Webview): string {
+	const cspSourceRegex = /\${webview.cspSource}/g;
+	let cspSourceMatch;
+	while ((cspSourceMatch = cspSourceRegex.exec(html)) !== null) {
+		html = html.slice(0, cspSourceMatch.index) + webview.cspSource +
+			html.slice(cspSourceMatch.index + cspSourceMatch[0].length);
+	}
+
+	return html;
+}
 export function activate(context: vscode.ExtensionContext) {
+	let currentPanel: vscode.WebviewPanel | undefined = undefined;
+
 	context.subscriptions.push(
 		vscode.commands.registerCommand('catCoding.start', () => {
-			CatCodingPanel.createOrShow(context.extensionUri);
+			console.log(`${__dirname}`);
+			if (currentPanel) {
+				currentPanel.reveal(vscode.ViewColumn.One);
+			} else {
+				const file = fs.readFileSync(`${__dirname}/${workSource}`, { encoding: 'utf8' });
+				const panel = vscode.window.createWebviewPanel('catCoding', 'Coding cat', vscode.ViewColumn.One, {
+					enableScripts: true,
+					localResourceRoots: [vscode.Uri.file(`${__dirname}/vue-table`)]
+				});
+				let resultHtml = fixResourceReferences(file, `${__dirname}/vue-table`, panel.webview);
+				console.log(resultHtml);
+				resultHtml = fixCspSourceReferences(resultHtml, panel.webview);
+
+				// const columnToShowIn = vscode.window.activeTextEditor
+				// 	? vscode.window.activeTextEditor.viewColumn
+				// 	: undefined;
+				// vscode.window.showInformationMessage("start");
+				// if (currentPanel) {
+				// 	currentPanel.reveal(columnToShowIn);
+				// } else {
+				// currentPanel = vscode.window.createWebviewPanel('catCoding', 'Coding cat', vscode.ViewColumn.One, {});
+				// 	currentPanel.webview.html = getWebviewContent();
+				// 	currentPanel.webview.html = getWebviewContent();
+				// 	currentPanel.onDidDispose(() => {
+				// 		vscode.window.showInformationMessage("disposed");
+				// 	}, null, context.subscriptions);
+				// }
+
+				panel.webview.html = resultHtml;
+				currentPanel = panel;
+				panel.webview.onDidReceiveMessage(
+					message => {
+						switch (message.command) {
+							case 'alert':
+								vscode.window.showErrorMessage(message.text);
+								return;
+							case 'received.message':
+								vscode.window.showErrorMessage(message.command);
+								return;		
+						}
+					},
+					undefined,
+					context.subscriptions
+				);
+			}
+
 		})
 	);
 
 	context.subscriptions.push(
 		vscode.commands.registerCommand('catCoding.doRefactor', () => {
-			if (CatCodingPanel.currentPanel) {
-				CatCodingPanel.currentPanel.doRefactor();
+			if (currentPanel) {
+				// CatCodingPanel.currentPanel.doRefactor();
+				currentPanel.webview.postMessage({ command: "test_command" });
 			}
 		})
 	);
 
-	if (vscode.window.registerWebviewPanelSerializer) {
-		// Make sure we register a serializer in activation event
-		vscode.window.registerWebviewPanelSerializer(CatCodingPanel.viewType, {
-			async deserializeWebviewPanel(webviewPanel: vscode.WebviewPanel, state: any) {
-				console.log(`Got state: ${state}`);
-				// Reset the webview options so we use latest uri for `localResourceRoots`.
-				webviewPanel.webview.options = getWebviewOptions(context.extensionUri);
-				CatCodingPanel.revive(webviewPanel, context.extensionUri);
-			}
-		});
-	}
+
+	// if (vscode.window.registerWebviewPanelSerializer) {
+	// 	// Make sure we register a serializer in activation event
+	// 	vscode.window.registerWebviewPanelSerializer(CatCodingPanel.viewType, {
+	// 		async deserializeWebviewPanel(webviewPanel: vscode.WebviewPanel, state: any) {
+	// 			console.log(`Got state: ${state}`);
+	// 			// Reset the webview options so we use latest uri for `localResourceRoots`.
+	// 			webviewPanel.webview.options = getWebviewOptions(context.extensionUri);
+	// 			CatCodingPanel.revive(webviewPanel, context.extensionUri);
+	// 		}
+	// 	});
+	// }
 }
 
 function getWebviewOptions(extensionUri: vscode.Uri): vscode.WebviewOptions {

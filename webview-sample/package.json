@@ -30,8 +30,30 @@
 				"command": "catCoding.doRefactor",
 				"title": "Do some refactoring",
 				"category": "Cat Coding"
+			},
+			{
+				"command": "catCoding.yarn",
+				"title": "Yarn 🧶",
+				"category": "Cat Coding"
+			},
+			{
+				"command": "catCoding.insertLion",
+				"title": "Insert 🦁",
+				"category": "Cat Coding"
 			}
-		]
+		],
+		"menus": {
+			"webview/context": [
+				{
+					"command": "catCoding.yarn",
+					"when": "webviewId == 'catCoding'"
+				},
+				{
+					"command": "catCoding.insertLion",
+					"when": "webviewId == 'catCoding' && webviewSection == 'editor'"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
