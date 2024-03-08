@@ -8,3 +8,6 @@ tsconfig.lsif.json
 *.lsif
 *.db
 node_modules
+custom-editor-sample/pnpm-lock.yaml
+welcome-view-content-sample/pnpm-lock.yaml
+webview-codicons-sample/pnpm-lock.yaml
