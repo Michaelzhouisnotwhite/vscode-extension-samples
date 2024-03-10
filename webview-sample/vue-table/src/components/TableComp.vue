@@ -47,29 +47,32 @@ const onTableRowRemoved = (idx) => {
 
 </script>
 <template>
-  <table-row-editor v-if="rowAddEditorShow" :tableKeys="tableKeys" @tableDataSave="onTableDataAddSave"></table-row-editor>
-  <table-row-editor v-if="rowEditEditorShow" :tableKeys="tableKeys" @tableDataSave="onTableDataEditSave" :initTableData="curRowDataProperty.data"></table-row-editor>
-  <el-table border class="main-table" :data="tableData" highlight-current-row>
-    <el-table-column type="index" width="25" />
-    <el-table-column v-for="header in headers" :key="header" :label="header" :prop="header" width="150" />
-    <el-table-column fixed="right" width="150">
-      <template #header>
-        <el-button size="small" type="success" @click="onAddRowClicked">添加一行</el-button>
-      </template>
-      <template #default="scope">
-        <el-button link type="primary" size="small" @click.prevent="onTableRowEdit(scope.$index)">
-          Edit
-        </el-button>
-        <el-button link type="primary" size="small" @click.prevent="onTableRowRemoved(scope.$index)">
-          Remove
-        </el-button>
-      </template>
-    </el-table-column>
-  </el-table>
+  <div>
+
+    <table-row-editor v-if="rowAddEditorShow" :tableKeys="tableKeys" @tableDataSave="onTableDataAddSave"></table-row-editor>
+    <table-row-editor v-if="rowEditEditorShow" :tableKeys="tableKeys" @tableDataSave="onTableDataEditSave" :initTableData="curRowDataProperty.data"></table-row-editor>
+    <el-button size="small" type="primary" @click="onAddRowClicked" style="width: fit-content;">添加一行</el-button>
+    <el-table border class="main-table" :data="tableData" highlight-current-row>
+      <el-table-column type="index" width="25" />
+      <el-table-column v-for="header in headers" :key="header" :label="header" :prop="header" width="auto" />
+      <el-table-column fixed="right" width="150">
+        <template #header>
+          <div>操作</div>
+        </template>
+        <template #default="scope">
+          <el-button link type="primary" size="small" @click.prevent="onTableRowEdit(scope.$index)">
+            Edit
+          </el-button>
+          <el-button link type="primary" size="small" @click.prevent="onTableRowRemoved(scope.$index)">
+            Remove
+          </el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+  </div>
+
 </template>
 <style scoped>
-:root {}
-
 .main-table {
   width: 100%;
   --el-table-text-color: var(--el-table-border);

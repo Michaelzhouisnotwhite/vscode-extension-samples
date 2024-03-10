@@ -6,25 +6,25 @@ import { ref } from "vue"
 // const example = ["abc", "bcd"];
 const curSheetName = ref("");
 const onShowSheet = (sheetName) => {
-  curSheetName.value = sheetName;
+    curSheetName.value = sheetName;
 }
 </script>
 
 <template>
-  <div class="flex">
-    <SheetChooserSidebar  :keys="SheetStorage.ins().keys" @sig-show-sheet="onShowSheet"></SheetChooserSidebar>
-    <div class="flex-auto flex flex-col">
-      <div class="h-12 align-middle">
-        <h1 class="font-serif text-2xl ">Header</h1>
-      </div>
+    <div class="flex">
+        <SheetChooserSidebar :keys="SheetStorage.ins().keys" @sig-show-sheet="onShowSheet"></SheetChooserSidebar>
+        <div class="flex-auto flex flex-col">
+            <div class="h-12 align-middle">
+                <h1 class="font-serif text-2xl ">Header</h1>
+            </div>
 
-      <TableComp v-if="SheetStorage.ins().get(curSheetName)" :sheet-item="SheetStorage.ins().get(curSheetName)"></TableComp>
+            <TableComp class="flex-1 w-full" v-if="SheetStorage.ins().get(curSheetName)" :sheet-item="SheetStorage.ins().get(curSheetName)"></TableComp>
+        </div>
     </div>
-  </div>
-  <!-- </div> -->
+    <!-- </div> -->
 
 
-  <!-- <div class="space-y-3">
+    <!-- <div class="space-y-3">
                 <div class="flex items-center justify-between">
                     <h2 class="text-xl font-bold text-white">Dashboard</h2>
                     <button @click="isOpen = !isOpen">
@@ -200,8 +200,8 @@ const onShowSheet = (sheetName) => {
                     </ul>
                 </div>
             </div>-->
-  <!-- </div> -->
-  <!-- <div class="container mx-auto mt-12">
+    <!-- </div> -->
+    <!-- <div class="container mx-auto mt-12">
       <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-3">
         <div class="w-full px-4 py-5 bg-white rounded-lg shadow">
           <div class="text-sm font-medium text-gray-500 truncate">

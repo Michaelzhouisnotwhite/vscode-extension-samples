@@ -39,5 +39,5 @@ const onRowEditorSave = () => {
       <el-input v-model="tableData[tk.keyName]"></el-input>
     </el-form-item>
   </el-form>
-  <el-button type="primary" @click="onRowEditorSave">保存</el-button>
+  <el-button type="primary" @click="onRowEditorSave" style="width: fit-content; margin-bottom: 2px;">保存</el-button>
 </template>
