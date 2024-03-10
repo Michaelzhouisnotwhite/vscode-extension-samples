@@ -67,6 +67,11 @@ export class SheetStorage {
 SheetStorage.ins().add(new SheetItem("ECUInfo", [
     new TableKeys("ECU Name", "填写ecu的名称"),
     new TableKeys("ECU Type", "ecu类型"),
+    new TableKeys("ECU MAC Addr", "ecu类型"),
+    new TableKeys("VLAN ID", "ecu类型"),
+]));
+SheetStorage.ins().add(new SheetItem("ApplicationInfo", [
+    new TableKeys("ECU Name", "填写ecu的名称"),
 ]))
 // SheetStorage.ins().add(new SheetItem("ECUInfo", [
 //     new TableKeys("ECU Name", "填写ecu的名称"),

@@ -11,14 +11,14 @@ const onShowSheet = (sheetName) => {
 </script>
 
 <template>
-    <div class="flex">
+    <div class="flex w-screen p-0">
         <SheetChooserSidebar :keys="SheetStorage.ins().keys" @sig-show-sheet="onShowSheet"></SheetChooserSidebar>
-        <div class="flex-auto flex flex-col">
+        <div class="grow container flex-col">
             <div class="h-12 align-middle">
                 <h1 class="font-serif text-2xl ">Header</h1>
             </div>
 
-            <TableComp class="flex-1 w-full" v-if="SheetStorage.ins().get(curSheetName)" :sheet-item="SheetStorage.ins().get(curSheetName)"></TableComp>
+            <TableComp class="w-full" v-if="SheetStorage.ins().get(curSheetName)" :sheet-item="SheetStorage.ins().get(curSheetName)"></TableComp>
         </div>
     </div>
     <!-- </div> -->

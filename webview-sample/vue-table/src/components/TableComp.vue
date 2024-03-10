@@ -48,9 +48,12 @@ const onTableRowRemoved = (idx) => {
 </script>
 <template>
   <div>
-
-    <table-row-editor v-if="rowAddEditorShow" :tableKeys="tableKeys" @tableDataSave="onTableDataAddSave"></table-row-editor>
-    <table-row-editor v-if="rowEditEditorShow" :tableKeys="tableKeys" @tableDataSave="onTableDataEditSave" :initTableData="curRowDataProperty.data"></table-row-editor>
+    <el-dialog v-model="rowAddEditorShow" title="编辑" width="500" align-center>
+      <table-row-editor v-if="rowAddEditorShow" :tableKeys="tableKeys" @tableDataSave="onTableDataAddSave"></table-row-editor>
+    </el-dialog>
+    <el-dialog v-model="rowEditEditorShow" title="编辑" width="500" align-center>
+      <table-row-editor v-if="rowEditEditorShow" :tableKeys="tableKeys" @tableDataSave="onTableDataEditSave" :initTableData="curRowDataProperty.data"></table-row-editor>
+    </el-dialog>
     <el-button size="small" type="primary" @click="onAddRowClicked" style="width: fit-content;">添加一行</el-button>
     <el-table border class="main-table" :data="tableData" highlight-current-row>
       <el-table-column type="index" width="25" />

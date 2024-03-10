@@ -18,7 +18,7 @@ const onSideBarKeyClicked = (keyName) => {
 
 <template>
   <!-- <div class="flex"> -->
-  <div :class="isOpen ? 'w-60' : 'w-40'" class="flex-none flex-col h-screen p-3 duration-300 bg-gray-800 shadow">
+  <div :class="isOpen ? 'w-60' : 'w-40'" class="flex-col h-screen p-3 duration-300 bg-gray-800 shadow">
     <div class="space-y-3">
       <div class="flex items-center justify-between">
         <h2 class="text-xl font-bold text-white">Sheet Name</h2>
