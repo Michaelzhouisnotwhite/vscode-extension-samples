@@ -12,10 +12,10 @@ const onShowSheet = (sheetName) => {
 
 <template>
   <div class="flex">
-    <SheetChooserSidebar class="grow-0" :keys="SheetStorage.ins().keys" @sig-show-sheet="onShowSheet"></SheetChooserSidebar>
-    <div class="grow flex-col">
+    <SheetChooserSidebar  :keys="SheetStorage.ins().keys" @sig-show-sheet="onShowSheet"></SheetChooserSidebar>
+    <div class="flex-auto flex flex-col">
       <div class="h-12 align-middle">
-        <h1 class=" font-serif text-2xl ">Header</h1>
+        <h1 class="font-serif text-2xl ">Header</h1>
       </div>
 
       <TableComp v-if="SheetStorage.ins().get(curSheetName)" :sheet-item="SheetStorage.ins().get(curSheetName)"></TableComp>

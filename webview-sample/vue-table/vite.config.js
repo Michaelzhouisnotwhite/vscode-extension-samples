@@ -11,7 +11,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 export default defineConfig({
   base: "./",
   server: {
-    port: 8080
+    port: 12800
   },
   plugins: [
     AutoImport({
