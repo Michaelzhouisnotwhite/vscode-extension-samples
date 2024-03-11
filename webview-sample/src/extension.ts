@@ -101,7 +101,7 @@ export function activate(context: vscode.ExtensionContext) {
 								return;
 							case 'received.message':
 								vscode.window.showErrorMessage(message.command);
-								return;		
+								return;
 							case "excel_export":
 								vscode.window.showErrorMessage(message.command);
 								return;
