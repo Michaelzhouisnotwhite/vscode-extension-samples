@@ -22,7 +22,7 @@ const onSideBarOpen = ()=>{
 </script>
 
 <template>
-  <div class="flex-col h-full p-3 duration-300 bg-gray-800 shadow">
+  <div class="flex-col h-full p-3 duration-300 bg-gray-800 dark:bg-neutral-950 shadow">
     <div class="space-y-3">
       <div class="flex items-center justify-between">
         <h2 class="text-xl font-bold text-white">Sheet Name</h2>

@@ -12,3 +12,4 @@ custom-editor-sample/pnpm-lock.yaml
 welcome-view-content-sample/pnpm-lock.yaml
 webview-codicons-sample/pnpm-lock.yaml
 webview-sample/vue-table/components.d.ts
+webview-sample/vue-table/auto-imports.d.ts
