@@ -5,6 +5,8 @@ import { createPinia } from 'pinia'
 
 import App from './App.vue'
 import router from './router'
+import { initGlobalSheetStorage } from './sheets/api'
+initGlobalSheetStorage()
 
 const app = createApp(App)
 

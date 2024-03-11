@@ -1,13 +1,12 @@
 <script setup>
-import { TableKeys } from '@/sheets/SheetTemplates';
+import { TableColumn } from '@/sheets/SheetTemplates';
 import { computed, onMounted, ref } from 'vue';
 
 const props = defineProps({
-  tableKeys: Array[TableKeys],
+  tableKeys: Array[TableColumn],
   initTableData: Object
 })
 const tableKeys = computed(() => {
-
   return props.tableKeys;
 })
 
@@ -35,7 +34,7 @@ const onRowEditorSave = () => {
 <template>
   <el-form label-position="top" label-width="auto">
     <el-form-item v-for="tk in tableKeys" :key="tk.keyName" :label="tk.keyName">
-      <div>{{ tk.keyComment }}</div>
+      <div class="text-orange-600">{{ tk.keyComment }}</div>
       <el-input v-model="tableData[tk.keyName]"></el-input>
     </el-form-item>
   </el-form>

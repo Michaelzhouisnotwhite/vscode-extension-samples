@@ -6,7 +6,7 @@ import path from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-
+// import rawLoaderPlugin from "vite-raw-plugin"
 // https://vitejs.dev/config/
 export default defineConfig({
   base: "./",
@@ -23,6 +23,7 @@ export default defineConfig({
     vue(),
     vueJsx(),
   ],
+  // assetsInclude: ["./src/assets/**.json"],
   build: {
     outDir: path.join(__dirname, "../out/vue-table")
   },

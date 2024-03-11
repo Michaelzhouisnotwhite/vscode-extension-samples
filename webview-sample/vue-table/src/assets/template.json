@@ -1,0 +1,939 @@
+{
+  "ECUInfo": [
+    {
+      "col_name": "ECU Name",
+      "comment": "填写ecu的名称",
+      "default_value": [
+        "ICC_MPU",
+        "ICC_MCU"
+      ]
+    },
+    {
+      "col_name": "ECU Type",
+      "comment": "ecu类型",
+      "default_value": [
+        "MPU",
+        "MCU"
+      ]
+    },
+    {
+      "col_name": "ECU MAC Addr",
+      "comment": "ecu mac地址",
+      "default_value": [
+        "02:80:5E:1F:01:02 ",
+        "02:80:5E:1F:01:01"
+      ]
+    },
+    {
+      "col_name": "VLAN ID",
+      "comment": "vlanid在一张表格中的vlanid应为同一值",
+      "default_value": [
+        "3",
+        "3"
+      ]
+    },
+    {
+      "col_name": "Unicast IP",
+      "comment": "ecuIP地址",
+      "default_value": [
+        "172.31.3.2",
+        "172.31.3.1"
+      ]
+    },
+    {
+      "col_name": "Network Mask",
+      "comment": "填写子网掩码",
+      "default_value": [
+        "255.225.0.0",
+        "255.225.0.0"
+      ]
+    },
+    {
+      "col_name": "Multicast IP",
+      "comment": "",
+      "default_value": [
+        "",
+        ""
+      ]
+    },
+    {
+      "col_name": "Multicast Port",
+      "comment": "",
+      "default_value": [
+        "",
+        ""
+      ]
+    }
+  ],
+  "ApplicationInfo": [
+    {
+      "col_name": "ECU Name",
+      "comment": "填写Ecu名称，对应ECUInfo表（不允许重复）",
+      "default_value": [
+        "ICC_MPU",
+        "ICC_MCU"
+      ]
+    },
+    {
+      "col_name": "Application Name",
+      "comment": "填写应用名称（不允许重复）",
+      "default_value": [
+        "Concrete_Client",
+        "Concrete_Server"
+      ]
+    },
+    {
+      "col_name": "Application Version",
+      "comment": "",
+      "default_value": [
+        "",
+        ""
+      ]
+    },
+    {
+      "col_name": "Executable Name",
+      "comment": "",
+      "default_value": [
+        "",
+        ""
+      ]
+    },
+    {
+      "col_name": "Executable Version",
+      "comment": "",
+      "default_value": [
+        "",
+        ""
+      ]
+    },
+    {
+      "col_name": "Executable Type",
+      "comment": "",
+      "default_value": [
+        "",
+        ""
+      ]
+    },
+    {
+      "col_name": "Process Name",
+      "comment": "",
+      "default_value": [
+        "",
+        ""
+      ]
+    },
+    {
+      "col_name": "Application Level",
+      "comment": "",
+      "default_value": [
+        "",
+        ""
+      ]
+    },
+    {
+      "col_name": "Scheduling Strategy",
+      "comment": "",
+      "default_value": [
+        "",
+        ""
+      ]
+    },
+    {
+      "col_name": "Policy",
+      "comment": "",
+      "default_value": [
+        "",
+        ""
+      ]
+    },
+    {
+      "col_name": "Running Dependency Mode",
+      "comment": "",
+      "default_value": [
+        "",
+        ""
+      ]
+    },
+    {
+      "col_name": "Running Mode state",
+      "comment": "",
+      "default_value": [
+        "",
+        ""
+      ]
+    },
+    {
+      "col_name": "startup option1 name",
+      "comment": "",
+      "default_value": [
+        "",
+        ""
+      ]
+    },
+    {
+      "col_name": "startup option1 type",
+      "comment": "",
+      "default_value": [
+        "",
+        ""
+      ]
+    },
+    {
+      "col_name": "startup option1 value",
+      "comment": "",
+      "default_value": [
+        "",
+        ""
+      ]
+    },
+    {
+      "col_name": "startup option2 Name",
+      "comment": "",
+      "default_value": [
+        "",
+        ""
+      ]
+    },
+    {
+      "col_name": "startup option2 type",
+      "comment": "",
+      "default_value": [
+        "",
+        ""
+      ]
+    },
+    {
+      "col_name": "startup option2 value",
+      "comment": "",
+      "default_value": [
+        "",
+        ""
+      ]
+    }
+  ],
+  "ServiceDeployInfo": [
+    {
+      "col_name": "Service Name",
+      "comment": "服务名称，\n该名称需要与ServiceInterfaceInfo表中的服务名称对应",
+      "default_value": [
+        "Concrete"
+      ]
+    },
+    {
+      "col_name": "ServiceID",
+      "comment": "服务ID 一个服务的instanceID唯一",
+      "default_value": [
+        "0x1002"
+      ]
+    },
+    {
+      "col_name": "InstanceID(0x)",
+      "comment": "服务Instance",
+      "default_value": [
+        "0x1"
+      ]
+    },
+    {
+      "col_name": "Major version",
+      "comment": "主版本号",
+      "default_value": [
+        "0"
+      ]
+    },
+    {
+      "col_name": "Minor version",
+      "comment": "次版本号",
+      "default_value": [
+        "1"
+      ]
+    },
+    {
+      "col_name": "VLAN",
+      "comment": "",
+      "default_value": [
+        ""
+      ]
+    },
+    {
+      "col_name": "Server APP Name",
+      "comment": "server对应的APP名称，\n该名称需要与ApplicationInfo表格对应",
+      "default_value": [
+        "Concrete_Server"
+      ]
+    },
+    {
+      "col_name": "Server TP Port",
+      "comment": "服务端口号（TCP+UDP），\n目前仅支持（TCP+UDP）使用同一个端口号",
+      "default_value": [
+        "23329"
+      ]
+    },
+    {
+      "col_name": "Client APP Name",
+      "comment": "client对应的APP名称，\n该名称需要与ApplicationInfo表格对应",
+      "default_value": [
+        "Concrete_Client"
+      ]
+    },
+    {
+      "col_name": "Client TP Port",
+      "comment": "客户端口号（TCP+UDP），\n目前仅支持（TCP+UDP）使用同一个端口号",
+      "default_value": [
+        "23338"
+      ]
+    }
+  ],
+  "DataElementInfo": [
+    {
+      "col_name": "Parameter Name",
+      "comment": "填写数据名称；\nstruct 字段的名称允许多行重复定义，每一行将做为结构体的字段定义。",
+      "default_value": [
+        "mode",
+        "temp",
+        "topicid",
+        "eventid",
+        "value",
+        "SoundQuality",
+        "array_dy",
+        "array_fix",
+        "First_Struct",
+        "First_Struct",
+        "First_Struct",
+        "First_Struct",
+        "Second_Struct",
+        "Second_Struct"
+      ]
+    },
+    {
+      "col_name": "Parameter Type",
+      "comment": "填写数据类型,\n支持的类型：Bool,Uint8,Uint16,Uint32,Uint64,Int8,Int16,Int32,Int64,Float,Double,String,FixArray,DynamicArray,Struct。定义枚举时，此列填写枚举的类型。",
+      "default_value": [
+        "Int32",
+        "Bool",
+        "Int8",
+        "String",
+        "Int32",
+        "Int8",
+        "DynamicArray",
+        "FixArray",
+        "Struct",
+        "Struct",
+        "Struct",
+        "Struct",
+        "Struct",
+        "Struct"
+      ]
+    },
+    {
+      "col_name": "Sub Element NO.",
+      "comment": "用于结构体定义，\n定义字段的位置",
+      "default_value": [
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "0",
+        "1",
+        "0",
+        "1",
+        "2",
+        "3",
+        "0",
+        "1"
+      ]
+    },
+    {
+      "col_name": "Sub Element Name",
+      "comment": "用于数组或结构体定义，定义子元素的名称；\n若该类型为struct或者array，则该值应该与对应struct或array的Parameter Name保持一致，若为基本数据类型则不作规定",
+      "default_value": [
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "vec_arr",
+        "vec_fix",
+        "SoundQuality",
+        "Name",
+        "Duration",
+        "Size",
+        "First_Struct",
+        "SoundQuality"
+      ]
+    },
+    {
+      "col_name": "Sub Element Type",
+      "comment": "子元素数据类型，\n与Parameter Type功能一致。\nD列为枚举时，本列填写枚举类型”Enum”。",
+      "default_value": [
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "Int8",
+        "Int64",
+        "Enum",
+        "Int64",
+        "Uint64",
+        "Bool",
+        "Struct",
+        "Enum"
+      ]
+    },
+    {
+      "col_name": "Array Element Num",
+      "comment": "静态数组的num",
+      "default_value": [
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\"
+      ]
+    },
+    {
+      "col_name": "Initial Value (hex)",
+      "comment": "",
+      "default_value": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "col_name": "Range(DEC)",
+      "comment": "枚举类型范围，\n填写规则示例： 0-3 \n解释：最小值0 最大值3\n该值会用于转换时的数据检查，会在转换时检查枚举值是否越界，留空则不检查",
+      "default_value": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "0-3",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "col_name": "ENUM Coding",
+      "comment": "枚举值定义，填写示例：\n0x00=c1\n0x01=c3\n0x02=c2\n0x03=c4\n每行一个，填写规范示例:值=标签\n转换时会检查值和标签是否重复",
+      "default_value": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "0x00=c1\n0x01=c3\n0x02=c2\n0x03=c4",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "col_name": "Value Description",
+      "comment": "数据说明",
+      "default_value": [
+        "Description1",
+        "Description2",
+        "Description3",
+        "Description4",
+        "Description5",
+        "Description6",
+        "Description7",
+        "Description8",
+        "Description9",
+        "Description10",
+        "Description11",
+        "Description12",
+        "Description13",
+        "Description14"
+      ]
+    }
+  ],
+  "ServiceInterfaceInfo": [
+    {
+      "col_name": "Service Name",
+      "comment": "服务名称，\n所有拥有同一个服务名称的接口定义将会被收集在同一个服务集合中",
+      "default_value": [
+        "Concrete",
+        "Concrete",
+        "Concrete",
+        "Concrete",
+        "Concrete",
+        "Concrete",
+        "Concrete",
+        "Concrete",
+        "Concrete",
+        "Concrete",
+        "Concrete",
+        "Concrete",
+        "Concrete",
+        "Concrete",
+        "Concrete",
+        "Concrete",
+        "Concrete",
+        "Concrete",
+        "Concrete"
+      ]
+    },
+    {
+      "col_name": "Interface Name",
+      "comment": "接口名称",
+      "default_value": [
+        "Method1",
+        "Method1",
+        "Method1",
+        "Method1",
+        "Method2",
+        "Method2",
+        "Method2",
+        "Method2",
+        "Method2",
+        "Method2",
+        "Method2",
+        "Field1",
+        "Field1",
+        "Field1",
+        "Field2",
+        "event1",
+        "event1",
+        "event1",
+        "event2"
+      ]
+    },
+    {
+      "col_name": "Interface Type",
+      "comment": "接口类型：可选：\n[Field,Method,Event，F&F Method] \nF&F Method：请求server不响应，参数只有输入。O列只支持input类型。\nMethod：请求server响应",
+      "default_value": [
+        "F&F Method",
+        "F&F Method",
+        "F&F Method",
+        "F&F Method",
+        "Method",
+        "Method",
+        "Method",
+        "Method",
+        "Method",
+        "Method",
+        "Method",
+        "Field",
+        "Field",
+        "Field",
+        "Field",
+        "Event",
+        "Event",
+        "Event",
+        "Event"
+      ]
+    },
+    {
+      "col_name": "Method/Event ID(0x)",
+      "comment": "ID需要保证在同一服务内唯一\n方法ID。当接口类型为F&F Method、Method、Event时需要填写。\n函数多参数的场合，ID需要填写相同。",
+      "default_value": [
+        "0x0003",
+        "0x0003",
+        "0x0003",
+        "0x0003",
+        "0x0004",
+        "0x0004",
+        "0x0004",
+        "0x0004",
+        "0x0004",
+        "0x0004",
+        "0x0004",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "0x0005",
+        "0x0005",
+        "0x0005",
+        "0x0006"
+      ]
+    },
+    {
+      "col_name": "Setter ID(0x)",
+      "comment": "ID需要保证在同一服务内唯一\n类型为Field时生效\nSetterID。Field函数多参数的场合，ID需要填写相同。\n请求client->service",
+      "default_value": [
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "0x0001",
+        "0x0001",
+        "0x0001",
+        "0x0002",
+        "N",
+        "N",
+        "N",
+        "N"
+      ]
+    },
+    {
+      "col_name": "Getter ID(0x)",
+      "comment": "ID需要保证在同一服务内唯一\n类型为Field时生效\nGetterID。Field函数多参数的场合，ID需要填写相同。\n\n获取event",
+      "default_value": [
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "0x8001",
+        "0x8001",
+        "0x8001",
+        "0x8002",
+        "N",
+        "N",
+        "N",
+        "N"
+      ]
+    },
+    {
+      "col_name": "Notifier ID(0x)",
+      "comment": "ID需要保证在同一服务内唯一\n类型为Field时生效\nNotifierID。Field函数多参数的场合，ID需要填写相同。\n\nNotifier 只有变化的时候",
+      "default_value": [
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "0x6001",
+        "0x6001",
+        "0x6001",
+        "0x6002",
+        "N",
+        "N",
+        "N",
+        "N"
+      ]
+    },
+    {
+      "col_name": "EventGroup Name",
+      "comment": "事件组名称（唯一）。当接口类型为Event和Field时需要填写。\n函数多参数的场合，Name需要填写相同。",
+      "default_value": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "EG_Field1",
+        "EG_Field1",
+        "EG_Field1",
+        "EG_Field2",
+        "EG_event1",
+        "EG_event1",
+        "EG_event1",
+        "EG_event2"
+      ]
+    },
+    {
+      "col_name": "EventGroup ID(0x)",
+      "comment": "事件组ID（唯一）。当接口类型为Event和Field时需要填写。\n函数多参数的场合，ID需要填写相同。",
+      "default_value": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "0x7001",
+        "0x7001",
+        "0x7001",
+        "0x7002",
+        "0x7003",
+        "0x7003",
+        "0x7003",
+        "0x7004"
+      ]
+    },
+    {
+      "col_name": "Multicast Threshold",
+      "comment": "",
+      "default_value": [
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\",
+        "\\"
+      ]
+    },
+    {
+      "col_name": "Send Type",
+      "comment": "",
+      "default_value": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "on change",
+        "on change",
+        "on change",
+        "on change",
+        "on change",
+        "on change",
+        "on change",
+        "on change"
+      ]
+    },
+    {
+      "col_name": "Cycle(ms)",
+      "comment": "",
+      "default_value": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "col_name": "Protocol",
+      "comment": "接口协议",
+      "default_value": [
+        "UDP",
+        "UDP",
+        "UDP",
+        "UDP",
+        "UDP",
+        "UDP",
+        "UDP",
+        "UDP",
+        "UDP",
+        "UDP",
+        "UDP",
+        "UDP",
+        "UDP",
+        "UDP",
+        "UDP",
+        "UDP",
+        "UDP",
+        "UDP",
+        "UDP"
+      ]
+    },
+    {
+      "col_name": "Parameter name",
+      "comment": "参数名称：\n该内容对应DataElementInfo表格中的Parameter Name。此处填写的Parameter Name必须在DataElementInfo中已经定义。注：（函数参数为空时除外）\n方法函数参数为空时，本项填写“void”、”VOID”、”Void”均可。无需在DataElementInfo中定义。",
+      "default_value": [
+        "mode",
+        "temp",
+        "eventid",
+        "array_dy",
+        "mode",
+        "First_Struct",
+        "eventid",
+        "array_dy",
+        "temp",
+        "eventid",
+        "mode",
+        "First_Struct",
+        "value",
+        "topicid",
+        "Second_Struct",
+        "mode",
+        "eventid",
+        "temp",
+        "void"
+      ]
+    },
+    {
+      "col_name": "Parameter Type",
+      "comment": "说明接口定义的类型，\n调用参数或者返回参数",
+      "default_value": [
+        "Input",
+        "Input",
+        "Input",
+        "Input",
+        "Input",
+        "Input",
+        "Input",
+        "Input",
+        "Output",
+        "Output",
+        "Output",
+        "Output",
+        "Output",
+        "Output",
+        "Output",
+        "Output",
+        "Output",
+        "Output",
+        "Output"
+      ]
+    }
+  ],
+  "SerializationParameter": [
+    {
+      "col_name": "Parameter Name",
+      "comment": "序列化规则(发数据时候、用这个规则)",
+      "default_value": [
+        "Alignment",
+        "Padding for fix length",
+        "Length field for struct",
+        "Tag for serialization",
+        "String Encoding",
+        "Struct Length field size",
+        "String Length field size",
+        "Array Length field size",
+        "Union Length field size",
+        "Union Type Selector field size",
+        "Union null"
+      ]
+    },
+    {
+      "col_name": "Parameter Value",
+      "comment": "",
+      "default_value": [
+        "32 bits",
+        "no",
+        "yes",
+        "no",
+        "Unicode(UTF8)",
+        "32 bits",
+        "32 bits",
+        "32 bits",
+        "32 bits",
+        "32 bits",
+        "Not allowed"
+      ]
+    }
+  ],
+  "SDParameter": [
+    {
+      "col_name": "Parameter Name",
+      "comment": "sd配置，时间字段支持 5s 5000ms 这两种数据类型",
+      "default_value": [
+        "INITIAL_DELAY_MIN",
+        "INITIAL_DELAY_MAX",
+        "REPETITIONS_BASE_DELAY",
+        "REPERIRIONS_MAX",
+        "REQUEST_RESPONSE_DELAY",
+        "CYCLIC_OFFER_DELAY",
+        "CYCLIC_SUBSCRIBE_DELAY",
+        "Client TTL",
+        "Server TTL",
+        "SD_PORT",
+        "SD_MULTICAST_IP",
+        "CYCLIC_Subcribe_DELAY"
+      ]
+    },
+    {
+      "col_name": "Parameter Value",
+      "comment": "",
+      "default_value": [
+        "10ms",
+        "50ms",
+        "50ms",
+        "3",
+        "10ms-50ms",
+        "1000 ms",
+        "1000 ms",
+        "3s",
+        "3s",
+        "30456",
+        "239.123.123.123",
+        "1000ms"
+      ]
+    }
+  ]
+}

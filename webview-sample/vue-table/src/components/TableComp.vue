@@ -1,8 +1,9 @@
 <script setup>
-import { SheetItem, TableKeys } from '@/sheets/SheetTemplates';
+import { SheetItem } from '@/sheets/SheetTemplates';
 // import { ElTable, ElTableColumn } from 'element-plus';
 import TableRowEditor from './TableRowEditor.vue';
-import { computed, ref, reactive } from 'vue';
+import { computed, ref, reactive, watch, onMounted } from 'vue';
+import * as api from "../sheets/api"
 const props = defineProps({
   sheetItem: SheetItem
 })
@@ -11,13 +12,20 @@ const headers = computed(() => {
 })
 const rowAddEditorShow = ref(false)
 const rowEditEditorShow = ref(false);
-
-const tableKeys = ref(new TableKeys("", ""));
+const sheetItem = computed(() => props.sheetItem)
+const tableKeys = computed(() => props.sheetItem.tableKeys);
 const onAddRowClicked = () => {
   rowAddEditorShow.value = true;
-  tableKeys.value = props.sheetItem.tableKeys;
 }
 const tableData = ref([]);
+watch(sheetItem, (old,) => {
+  console.log("props change");
+  tableData.value = old.getJsonSheet(SheetItem.JSON_SHEET_TYPE.row_based)
+})
+onMounted(() => {
+  console.log("table comp update");
+  tableData.value = [...props.sheetItem.getJsonSheet(SheetItem.JSON_SHEET_TYPE.row_based)];
+})
 
 const onTableDataAddSave = (data) => {
   tableData.value.push(data)
@@ -45,6 +53,10 @@ const onTableRowRemoved = (idx) => {
   tableData.value.splice(idx, 1)
 }
 
+const onSaveTableClicked = () => {
+  api.sheetSave(sheetItem.value.sheetName, tableData.value)
+}
+
 </script>
 <template>
   <div>
@@ -54,8 +66,9 @@ const onTableRowRemoved = (idx) => {
     <el-dialog v-model="rowEditEditorShow" title="编辑" width="500" align-center>
       <table-row-editor v-if="rowEditEditorShow" :tableKeys="tableKeys" @tableDataSave="onTableDataEditSave" :initTableData="curRowDataProperty.data"></table-row-editor>
     </el-dialog>
-    <el-button size="small" type="primary" @click="onAddRowClicked" style="width: fit-content;">添加一行</el-button>
-    <el-table border class="main-table" :data="tableData" highlight-current-row>
+    <el-button size="small" type="primary" @click="onAddRowClicked" style="width: fit-content; height: 40px;">添加一行</el-button>
+    <el-button size="small" type="warning" @click="onSaveTableClicked" style="width: fit-content;height: 40px;">保存</el-button>
+    <el-table border class="main-table" :data="tableData" highlight-current-row height="80vh">
       <el-table-column type="index" width="25" />
       <el-table-column v-for="header in headers" :key="header" :label="header" :prop="header" width="auto" />
       <el-table-column fixed="right" width="150">
